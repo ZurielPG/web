@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPN Delivery - Comida y Papelería</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: relative;
+      height: 200px;
+      max-height: 250px;
+    }
+
+    /* Overlay oscuro para mejorar la visibilidad del texto */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* sombra negra semitransparente */
+      z-index: 0;
+    }
+
+    header h1,
+    header img {
+      position: relative;
+      z-index: 1;
+    }
+
+    header img {
+      max-height: 120px; /* Ajustamos la altura de los logos */
+      height: auto;
+    }
+
+    .menu-principal {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 20px;
+    }
+
+    .submenu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .submenu button {
+      background-color: #800000;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 10px;  /* Añadimos margen entre los botones */
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submenu button:hover {
+      background-color: #a10000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .item {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 5px #ccc;
+    }
+
+    .item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* 🎨 Botón con efecto deslizante y rojo suave */
+    .btn-estilo {
+      position: relative;
+      padding: 10px 20px;
+      background-color: #b94a48;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      font-size: 1em;
+      z-index: 1;
+      transition: color 0.4s ease;
+    }
+
+    .btn-estilo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: #d86e67;
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn-estilo:hover::before {
+      left: 0;
+    }
+
+    .btn-estilo:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://i.imgur.com/FYTYoHj.png" alt="Logo Bazac">
+  <h1>BAZAC - IPN Delivery</h1>
+  <img src="https://images.seeklogo.com/logo-png/47/2/instituto-politecnico-nacional-logo-png_seeklogo-478563.png" alt="Logo IPN">
+</header>
+
+<div class="menu-principal">
+  <button class="btn-estilo" onclick="mostrarSeccion('comida')">Comida</button>
+  <button class="btn-estilo" onclick="mostrarSeccion('papeleria')">Papelería</button>
+  <button class="btn-estilo" onclick="mostrarSeccion('ropah')">Ropa de hombre</button>
+  <button class="btn-estilo" onclick="mostrarSeccion('ropam')">Ropa de mujer</button>
+</div>
+
+
+
+<!-- Sección Comida -->
+<div id="comida" class="hidden">
+  <h2 style="text-align:center;">Productos de Comida</h2>
+  <div class="submenu">
+    <button class="btn-estilo" onclick="showSection('pizzas')">Pizzas</button>
+    <button class="btn-estilo" onclick="showSection('hamburguesas')">Hamburguesas</button>
+    <button class="btn-estilo" onclick="showSection('tacos')">Tacos</button>
+    <button class="btn-estilo" onclick="showSection('ramen')">Ramen</button>
+    <button class="btn-estilo" onclick="showSection('aguas')">Aguas</button>
+    <button class="btn-estilo" onclick="showSection('postres')">Postres</button>
+  </div>
+</div>
+
+<!-- Pizzas -->
+<div id="pizzas" class="categoria hidden">
+    <h1 style="text-align:center;">Pizzas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNkfe_XU6LZa8P_vIBpESL5oVqB-D50KTZlw&s" alt=""><h3>Pizzas de Peperoni</h3><p>$30/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX90UFFeHcnQO6qPBMB78ZyAHhmXStPHKyoQ&s" alt=""><h3>Pizza de Queso</h3><p>$20/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8m1D59sHfckxQbReKU-UqBit4zaGABVPcCg&s" alt=""><h3>Pizza Vegetariana</h3><p>$50/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTjbdzKe7UwpdTatJ92qrFvKs5QkF0XxVvKg&s" alt=""><h3>Pizza Hawaiana</h3><p>$60/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLflUXkfWR87B74ls8Q6HFeGbCOTUPDY3gLA&s" alt=""><h3>Pizza de pollo</h3><p>$40/kg</p></div>
+    </div>
+  </div>
+
+  <!-- Hamburguesas -->
+  <div id="hamburguesas" class="categoria hidden">
+    <h1 style="text-align:center;">Hamburguesas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://api-middleware-mcd.mcdonaldscupones.com/media/image/product$Hamburguesa.png/200/200/original?country=mx" alt=""><h3>Hamburguesa Clasica</h3><p>$15/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm_ldzAafFuE_4aDaFGg6ove0cuwfHtR6hcw&s" alt=""><h3>Hamburguesa deble carne</h3><p>$25/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMj-fNcJFcMX6t9apdSCt8V2JL72xkrDP5IA&s" alt=""><h3>Hamburguesa Vegetariana</h3><p>$20/kg</p></div>
+    </div>
+  </div>
+
+  <!-- Tacos -->
+  <div id="tacos" class="categoria hidden">
+    <h1 style="text-align:center;">Tacos</h1>
+    <div class="grid">
+      <div class="item"><img src="https://img.maspormas.com/2016/01/tacos-victoria.jpg" alt=""><h3>Taco de Carnitas</h3><p>$80/kg</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwqJC7D4hKt77w8_-K0DP4KAwct03nb_BOiA&s" alt=""><h3>Taco de Bistec</h3><p>$120/kg</p></div>
+      <div class="item"><img src="https://imag.bonviveur.com/tacos-de-pollo.jpg" alt=""><h3>Taco de Pollo</h3><p>$100/kg</p></div>
+      <div class="item"><img src="https://www.entornoturistico.com/wp-content/uploads/2023/02/3-tacos-al-pastor.jpeg" alt=""><h3>Taco de Pastor</h3><p>$150/kg</p></div>
+    </div>
+  </div>
+
+  <!-- Ramen -->
+  <div id="ramen" class="categoria hidden">
+    <h1 style="text-align:center;">Ramen</h1>
+    <div class="grid">
+      <div class="item"><img src="https://laroussecocina.mx/wp-content/uploads/2021/07/Ramen-de-cerdo.png" alt=""><h3>Ramen de Cerdo</h3><p>$30/litro</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuNvGxvYkDf52lNpyhLHqSomGDr_MHCmK9w&s" alt=""><h3>Ramen Vegetariano</h3><p>$80/kg</p></div>
+      <div class="item"><img src="https://www.shoothecook.es/wp-content/uploads/ramen-de-pollo-receta-facil-f-1.jpg" alt=""><h3>"Ramen de Pollo</h3><p>$15/cada uno</p></div>
+    </div>
+  </div>
+
+  <!-- Aguas -->
+  <div id="aguas" class="categoria hidden">
+    <h1 style="text-align:center;">Aguas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://images.aws.nestle.recipes/original/8eaf50148ed521383df5d9793cba995f_whatsapp_image_2022-04-28_at_1.00.26_pm_(2).jpeg" alt=""><h3>Agua de Horchata</h3><p>$20/cada uno</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfw5-Eu4J9dUqMFoEMb0LGPsCpjb4rHaQPqA&s" alt=""><h3>Agua de Jamaica</h3><p>$10/cada uno</p></div>
+      <div class="item"><img src="https://www.cocinavital.mx/wp-content/uploads/2021/08/agua-de-tuna-y-limon-receta-1.jpg" alt=""><h3>Agua de Limón</h3><p>$15/cada una</p></div>
+    </div>
+  </div>
+
+<!-- Postres -->
+<div id="postres" class="categoria hidden">
+    <h1 style="text-align:center;">Postres</h1>
+    <div class="grid">
+      <div class="item"><img src="https://i.blogs.es/816ba4/tarta_fresas/1366_2000.jpg" alt=""><h3>Tarta de Fresa</h3><p>$20/cada uno</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB41RIOOxlJJICmkQK1ti4SvBSu_cCkLk9mg&s" alt=""><h3>Flan</h3><p>$10/cada uno</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwFiLU8ga_5rKKEGKjjVKl6TOSWKPfrhlgKw&s" alt=""><h3>Pastel de Chocolate</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3i416iiDxX_HhCLBOstYsG87BSiPp9BQJTw&s" alt=""><h3>Galletas de Chocolate</h3><p>$15/cada una</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sección Papelería -->
+<div id="papeleria" class="hidden">
+  <h2 style="text-align:center;">Productos de Papelería</h2>
+  <div class="submenu">
+    <button class="btn-estilo" onclick="showSection('hojas')">Hojas</button>
+    <button class="btn-estilo" onclick="showSection('plumas')">Plumas</button>
+    <button class="btn-estilo" onclick="showSection('lapices')">Lápices</button>
+    <button class="btn-estilo" onclick="showSection('marcadores')">Marcadores</button>
+    <button class="btn-estilo" onclick="showSection('cartulinas')">Cartulinas</button>
+    <button class="btn-estilo" onclick="showSection('cuadernos')">Cuadernos</button>
+    <button class="btn-estilo" onclick="showSection('general')">General</button>
+  </div>
+</div>
+
+<!-- Hojas -->
+<div id="hojas" class="categoria hidden">
+    <h1 style="text-align:center;">Hojas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://jesam.shop/cdn/shop/products/hojasbl.jpg?v=1658185372" alt=""><h3>Hojas Blancas</h3><p>$40/cada uno</p></div>
+      <div class="item"><img src="https://ofimart.mx/wp-content/uploads/2021/10/supra-brights-rojo.webp" alt=""><h3>Hojas rojas</h3><p>$50/cada uno</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAoca1R9Ra2bspEcz_Fi5JKC09c0PQrstVRA&s" alt=""><h3>Hojas verdes</h3><p>$35/cada uno</p></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/7a/e1/a9/7ae1a90995e34ed8e8ee10037d7844b2.jpg" alt=""><h3>Hojas Azules</h3><p>$35/cada uno</p></div>
+      <div class="item"><img src="https://ofimart.mx/wp-content/uploads/2021/10/supra-brights-amarillo-canario.webp" alt=""><h3>Hojas Amarillas</h3><p>$35/cada uno</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4q8DwbyMkM-R0GkNi4uw0zu4MrOakcHQ0zw&s" alt=""><h3>Hojas Negro</h3><p>$35/cada uno</p></div>
+    </div>
+  </div>
+  
+  <!-- Plumas -->
+  <div id="plumas" class="categoria hidden">
+    <h1 style="text-align:center;">Plumas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://www.sajor.com.mx/assets/uploads/sw_900001.png" alt=""><h3>Pluma negra</h3><p>$10/cada uno</p></div>
+      <div class="item"><img src="https://www.sajor.com.mx/assets/uploads/sw_900003.png" alt=""><h3>Pluma roja</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://www.sajor.com.mx/assets/uploads/sw_900002.png" alt=""><h3>Pluma azul</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_815721-MLA54125603039_032023-O-paper-mate-boligrafo-kilometrico-color-morado.webp" alt=""><h3>Pluma morada</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_602487-MLM44962831878_022021-O-boligrafo-papermate-kilometrico-rosa-12-piezas.webp" alt=""><h3>Pluma rosa</h3><p>$12/cada uno</p></div>
+    </div>
+  </div>
+
+  <!-- Lápices -->
+  <div id="lapices" class="categoria hidden">
+    <h1 style="text-align:center;">Lápices</h1>
+    <div class="grid">
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcxtGNBRmZj_Cx4rlNCHqD4JGPNq_FfRH4Lw&s" alt=""><h3>Lápiz de Madera</h3><p>$5/cada uno</p></div>
+      <div class="item"><img src="https://previews.123rf.com/images/inbj/inbj1404/inbj140400025/27095322-l%C3%A1piz-de-color-azul-aislado-en-blanco.jpg" alt=""><h3>Color azul</h3><p>$8/cada uno</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_700687-MLM69511053315_052023-O.jpg" alt=""><h3>Color verde</h3><p>$8/cada uno</p></div>
+      <div class="item"><img src="https://lumen.com.mx/Content/Images/productPics/lapices-checador-verithin-rojo-marca-paper-mate-sku-214689.jpg" alt=""><h3>Color rojo</h3><p>$8/cada uno</p></div>
+      <div class="item"><img src="https://png.pngtree.com/png-vector/20240125/ourmid/pngtree-color-pencil-yellow-png-image_11493874.png" alt=""><h3>Color amarillo</h3><p>$8/cada uno</p></div>
+      <div class="item"><img src="https://i.etsystatic.com/9566937/r/il/57d9af/1324352036/il_570xN.1324352036_8fd2.jpg" alt=""><h3>Color morado</h3><p>$8/cada uno</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_827803-MLU70360547131_072023-O.webp" alt=""><h3>Color negro</h3><p>$8/cada uno</p></div>
+    </div>
+  </div>
+
+<!-- Marcadores -->
+<div id="marcadores" class="categoria hidden">
+    <h1 style="text-align:center;">Marcadores</h1>
+    <div class="grid">
+      <div class="item"><img src="https://cadtoner.com.mx/9595-product_cad/marcador-fluorescente-amarillo-hi-liter-marcatexto-caja-c12.jpg" alt=""><h3>Marcador amarillo</h3><p>$40/cada uno</p></div>
+      <div class="item"><img src="https://m.media-amazon.com/images/I/71QntGNLlRL._AC_UF894,1000_QL80_.jpg" alt=""><h3>Marcador rosa</h3><p>$50/cada uno</p></div>
+      <div class="item"><img src="https://i5.walmartimages.com/asr/5e5c53a1-6c75-428e-b02a-ec292a978ad4.34ac2c3bd97a8c9ca52c084becc2fc59.jpeg" alt=""><h3>Marcador naranja/h3><p>$35/cada uno</p></div>
+    </div>
+  </div>
+
+  <!-- Cartulinas -->
+  <div id="cartulinas" class="categoria hidden">
+    <h1 style="text-align:center;">Cartulinas</h1>
+    <div class="grid">
+      <div class="item"><img src="https://irp.cdn-website.com/2f7324bd/dms3rep/multi/432907-fee0f018.jpg" alt=""><h3>Papel bon</h3><p>$10/cada uno</p></div>
+      <div class="item"><img src="https://elpartenon.com.mx/wp-content/uploads/2022/02/Cartulina-bristol-blanca.jpeg" alt=""><h3>Cartulima blanca</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://papeleriadelahorro.mx/cdn/shop/products/0001_x800_4bd8d634-a70b-4c2b-a5b6-144a2053eb12.jpg?v=1743700239" alt=""><h3>Cartulina amarillo</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://papeleriadelahorro.mx/cdn/shop/products/0001_x800_08f8746c-f180-4528-b8ce-48f1887c8b14.jpg?v=1743700231" alt=""><h3>Cartulina naranja</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://papeleriadelahorro.mx/cdn/shop/products/0001_x800_d44e851e-d524-4602-9972-b347593533fd.jpg?v=1743700241" alt=""><h3>Cartulina rosa</h3><p>$12/cada uno</p></div>
+      <div class="item"><img src="https://papeleriadelahorro.mx/cdn/shop/products/0001_x800_559cdbf2-9ec6-450f-9808-f461550586ec.jpg?v=1743700240" alt=""><h3>Cartulina verde</h3><p>$12/cada uno</p></div>
+    </div>
+  </div>
+
+  <!-- Cuadernos -->
+  <div id="cuadernos" class="categoria hidden">
+    <h1 style="text-align:center;">Cuadernos</h1>
+    <div class="grid">
+      <div class="item"><img src="https://i5-mx.walmartimages.com/samsmx/images/product-images/img_large/981011045l.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt=""><h3>Cuaderno Profesional cuadro chico</h3><p>$40/cada uno</p></div>
+      <div class="item"><img src="https://colmenero.shop/cdn/shop/products/cuadernoprofscribe.jpg?v=1704910972&width=1000" alt=""><h3>Cuaderno Profecional cuadro grande</h3><p>$50/cada uno</p></div>
+      <div class="item"><img src="https://papeleriadelahorro.mx/cdn/shop/files/cuaderno-cosido-profesional-raya-100-hojas-norma-color-1.webp?v=1743700169" alt=""><h3>Cuaderno de rayas</h3><p>$35/cada uno</p></div>
+    </div>
+  </div>
+
+  <!-- General -->
+  <div id="general" class="categoria hidden">
+    <h1 style="text-align:center;">General</h1>
+    <div class="grid">
+      <div class="item"><img src="https://www.papeleriaomega.com.mx/imagenessia/084014.jpg" alt=""><h3>Carpeta Plástica</h3><p>$30/cada una</p></div>
+      <div class="item"><img src="https://tonypapelerias.vtexassets.com/arquivos/ids/269972-800-450?v=638556443277300000&width=800&height=450&aspect=true" alt=""><h3>Carpeta de Cartón</h3><p>$25/cada una</p></div>
+      <div class="item"><img src="https://tienda.apsa.com.mx/cdn/shop/files/FolderIntenso.webp?v=1689894930&width=1946" alt=""><h3>Folder</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://i0.wp.com/online.sanfelipeescolar.com.mx/wp-content/uploads/2020/04/21312.jpg?fit=500%2C500&ssl=1" alt=""><h3>Regla de 30 cm</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_710016-MLM75688821093_042024-O-6-gomas-para-borrar-rectangular-colores-g-2207.webp" alt=""><h3>Gomas</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://cdn11.bigcommerce.com/s-79zue6d3ed/images/stencil/1280w/products/28481/479397/IMP0016539__75349.1745347996.jpg?c=1" alt=""><h3>Tijeras</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://i0.wp.com/ryssapapeleria.com.mx/wp-content/uploads/2019/02/HENK6679.jpg?fit=296%2C226&ssl=1" alt=""><h3>prit</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3ovcZFI4V4mjcsBvPn7kSRS9E5M9pd-cxBA&s" alt=""><h3>Sacapuntas</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv8YLEMZQWmYouk3HvZkoPQACpZSL_8xxhMw&s" alt=""><h3>Diurex</h3><p>$15/cada una</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGtFp1XDNhiE6ETcT5YX5Oj_hcrwpRNEbx9g&s" alt=""><h3>Engrapadora</h3><p>$15/cada una</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sección ropa de hombre -->
+<div id="ropah" class="hidden">
+  <h2 style="text-align:center;">Ropa para hombre</h2>
+  <div class="submenu">
+    <button class="btn-estilo" onclick="showSection('playerah')">Playeras de hombre</button>
+    <button class="btn-estilo" onclick="showSection('pantalonesh')">Pantalones de hombre</button>
+    <button class="btn-estilo" onclick="showSection('chamarrash')">Chamarras de hombre</button>
+    <button class="btn-estilo" onclick="showSection('gorrash')">Gorras de hombre</button>
+    <button class="btn-estilo" onclick="showSection('zapatosh')">Zapatos, tenis de hombre</button>
+  </div>
+</div>
+
+ <!-- Playeras de hombre -->
+ <div id="playerah" class="categoria hidden">
+    <h1 style="text-align:center;">Playeras de hombre</h1>
+    <div class="grid">
+        <div class="item"><img src="https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750041756149L.jpg" alt=""><h3>Playera Básica Negra</h3><p>$150</p></div>
+        <div class="item"><img src="https://michoacanaplus.com/cdn/shop/files/paleta.jpg?v=1695925181" alt=""><h3>Playera Estampada</h3><p>$180</p></div>
+        <div class="item"><img src="https://dimeo.mx/cdn/shop/products/NEGRA_31c9ffb3-ea62-4f3c-adcf-e730e56ccce3.jpg?v=1693258083" alt=""><h3>Playera Deportiva</h3><p>$220</p></div>
+        <div class="item"><img src="https://optimamayoreo.com.mx/wp-content/uploads/2024/11/32692-05172-1000x1000.jpg" alt=""><h3>Playera de Manga Larga</h3><p>$250</p></div>
+        <div class="item"><img src="https://m.media-amazon.com/images/I/31i86EpWHCL._AC_SY1000_.jpg" alt=""><h3>Playera Casual</h3><p>$170</p></div>
+    </div>
+  </div>
+
+  <div id="pantalonesh" class="categoria hidden">
+    <h1 style="text-align:center;">Pantalones de hombre</h1>
+    <div class="grid">
+    <div class="item"><img src="https://pantalonesdemezclilla.mx/cdn/shop/files/rotos-pantalones-de-mezclilla-azules-de-hombre_3.jpg?v=1706895289" alt=""><h3>Pantalón de Mezclilla</h3><p>$350</p></div>
+      <div class="item"><img src="https://martimx.vtexassets.com/arquivos/ids/1057892-450-450?v=638094967401870000&width=450&height=450&aspect=true" alt=""><h3>Short Deportivo</h3><p>$200</p></div>
+      <div class="item"><img src="https://ss247.liverpool.com.mx/sm/1164129931.jpg" alt=""><h3>Pantalón de Tela</h3><p>$280</p></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQthMCuJ01HJBfqUoFaCFgmPu3xG4DkT3maUQ&s" alt=""><h3>Jeans Slim Fit</h3><p>$300</p></div>
+      <div class="item"><img src="https://m.media-amazon.com/images/I/417QWIRnXkL._AC_SY1000_.jpg" alt=""><h3>Short Casual</h3><p>$250</p></div>
+    </div>
+  </div>
+  
+  <div id="chamarrash" class="categoria hidden">
+    <h1 style="text-align:center;">Chamarras de hombre</h1>
+    <div class="grid">
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlrcqzacAoWbJpFloszQNtT7ATnMAEGLv1UQ&s" alt=""><h3>Chamarra de Cuero</h3><p>$600</p></div>
+        <div class="item"><img src="https://m.media-amazon.com/images/I/51GVuR6GwsL.jpg" alt=""><h3>Chamarra Deportiva</h3><p>$550</p></div>
+        <div class="item"><img src="https://m.media-amazon.com/images/I/41+d-F3qXCL._AC_.jpg" alt=""><h3>Chamarra de Invierno</h3><p>$750</p></div>
+        <div class="item"><img src="https://m.media-amazon.com/images/I/41ZzWrZrV1L._AC_SY1000_.jpg" alt=""><h3>Chamarra Ligera</h3><p>$500</p></div>
+        <div class="item"><img src="https://ferreteriaeloso.mx/cdn/shop/files/d2fbbfed-8909-4ea4-833b-9f9730c6fdfd.jpg?v=1738208695" alt=""><h3>Chamarra de Pluma</h3><p>$650</p></div>
+    </div>
+  </div>
+
+  <div id="gorrash" class="categoria hidden">
+    <h1 style="text-align:center;">Gorras de hombre</h1>
+    <div class="grid">
+        <div class="item"><img src="https://cdn1.coppel.com/images/catalog/pr/1653962-1.jpg" alt=""><h3>Gorra Deportiva</h3><p>$150</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt73bRaKST6dFK0G4X1r3qjP6rgxQTBVZeBg&s" alt=""><h3>Gorra Casual</h3><p>$120</p></div>
+        <div class="item"><img src="https://resources.sears.com.mx/medios-plazavip-sears/fotos/productos_sears1/original/4129622.jpg" alt=""><h3>Gorra con Logo</h3><p>$180</p></div>
+        <div class="item"><img src="https://shop.aguilasdemexicali.mx/cdn/shop/files/27BB8682-4F69-486F-9A63-613D25FA13D6_1024x1024.jpg?v=1735447429" alt=""><h3>Gorra de Baseball</h3><p>$160</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4VdYF7RJAyvUwrqz-MHZupEHgOqlxUNU5FQ&s" alt=""><h3>Gorra Ajustable</h3><p>$140</p></div>
+    </div>
+  </div>
+
+  <div id="zapatosh" class="categoria hidden">
+    <h1 style="text-align:center;">Zapatos de hombre</h1>
+    <div class="grid">
+    <div class="item"><img src="https://cdn1.coppel.com/images/catalog/pr/8517572-1.jpg" alt=""><h3>Zapatos de Vestir</h3><p>$700</p></div>
+      <div class="item"><img src="https://cdn1.coppel.com/images/catalog/mkp/6283/14000/628313839-2.jpg" alt=""><h3>Tenis Deportivos</h3><p>$600</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_765508-CBT82747552397_022025-O-zapatos-de-tenis-para-hombre-zapatos-casuales-de-moda.webp" alt=""><h3>Zapatos Casual</h3><p>$500</p></div>
+      <div class="item"><img src="https://vazza.com.mx/cdn/shop/files/1384392_1.jpg?v=1735145644" alt=""><h3>Tenis Urbanos</h3><p>$550</p></div>
+      <div class="item"><img src="https://cdn1.coppel.com/images/catalog/pr/8513272-1.jpg" alt=""><h3>Botas Casuales</h3><p>$800</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sección de rpoa de mujer-->
+<div id="ropam" class="hidden">
+    <h2 style="text-align:center;">Ropa para mujer</h2>
+    <div class="submenu">
+      <button onclick="showSection('playeram')">Playeras de mujer</button>
+    <button onclick="showSection('pantalonesm')">Pantalones de mujer</button>
+    <button onclick="showSection('chamarrasm')">Cahamarras de mujer</button>
+    <button onclick="showSection('gorrasm')">Gorras de mujer</button>
+    <button onclick="showSection('zapatosm')">Zapatos, tenis de mujer</button>
+    </div>
+
+    <!-- Playeras de mujer -->
+  <div id="playeram" class="categoria hidden">
+    <h1 style="text-align:center;">Playeras de mujer</h1>
+    <div class="grid">
+      <div class="item"><img src="https://ivonne.com/cdn/shop/files/10106279rosa_obscuro_5.jpg?v=1737498628&width=940" alt=""><h3>Playera Básica Rosa</h3><p>$160</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_730383-MLM76920775216_062024-O-blusa-playera-estampado-de-flores-para-mujer-var34.webp" alt=""><h3>Playera Estampada Floral</h3><p>$190</p></div>
+      <div class="item"><img src="https://chapurmx.vtexassets.com/arquivos/ids/278682-800-auto?v=638348569735870000&width=800&height=auto&aspect=true" alt=""><h3>Playera Deportiva Mujer</h3><p>$230</p></div>
+      <div class="item"><img src="https://ramoncito.com/media/catalog/product/cache/e807bc9ad871bcde0c0b73c1fa901139/5/5/55_gar-1952_blanco.jpg" alt=""><h3>Playera Manga Larga Blanca</h3><p>$270</p></div>
+      <div class="item"><img src="https://img.ltwebstatic.com/images3_spmp/2024/07/02/49/17199039294ca93498047eeb051c484dd6fc865064_thumbnail_720x.jpg" alt=""><h3>Playera Casual Mujer</h3><p>$180</p></div>
+    </div>
+  </div>
+
+  <div id="pantalonesm" class="categoria hidden">
+    <h1 style="text-align:center;">Pantalones de mujer</h1>
+    <div class="grid">
+        <div class="item"><img src="https://m.media-amazon.com/images/I/414fx3VPY0L._AC_.jpg" alt=""><h3>Pantalón de Mezclilla</h3><p>$380</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSWgh3lmtNCwyNWZHLZTdoRybgzqMdSApVDA&s" alt=""><h3>Short Casual Mujer</h3><p>$220</p></div>
+        <div class="item"><img src="https://http2.mlstatic.com/D_795041-MLM77997137048_082024-O.jpg" alt=""><h3>Pantalón de Tela Floreado</h3><p>$300</p></div>
+        <div class="item"><img src="https://http2.mlstatic.com/D_606529-MLM78825540113_082024-O.jpg" alt=""><h3>Jeans Slim Mujer</h3><p>$350</p></div>
+        <div class="item"><img src="https://m.media-amazon.com/images/I/41ZHbO3SBhL._AC_SY1000_.jpg" alt=""><h3>Short Deportivo</h3><p>$270</p></div>
+    </div>
+  </div>
+  
+  <div id="chamarrasm" class="categoria hidden">
+    <h1 style="text-align:center;">Chamarras de mujer</h1>
+    <div class="grid">
+      <div class="item"><img src="https://cdn1.coppel.com/images/catalog/pr/3664002-1.jpg" alt=""><h3>Chamarra de Cuero Mujer</h3><p>$650</p></div>
+      <div class="item"><img src="https://s3-us-west-1.amazonaws.com/calzzapato/zoom/09GLV7-1.jpg" alt=""><h3>Chamarra Deportiva Mujer</h3><p>$600</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_795490-MLM44137302169_112020-O.webp" alt=""><h3>Chamarra de Invierno Mujer</h3><p>$750</p></div>
+      <div class="item"><img src="https://unicosmoderna.com/cdn/shop/files/CHAMARRA-ADIDAS-H59271-DAMA-NEGRO-184994-_1.jpg?v=1743711137" alt=""><h3>Chamarra Ligera Mujer</h3><p>$550</p></div>
+      <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_689842-CBT74169038123_012024-O.webp" alt=""><h3>Chamarra de Pluma Mujer</h3><p>$700</p></div>
+    </div>
+  </div>
+
+  <div id="gorrasm" class="categoria hidden">
+    <h1 style="text-align:center;">Gorras de mujer</h1>
+    <div class="grid">
+        <div class="item"><img src="https://down-mx.img.susercontent.com/file/sg-11134201-7req7-m8z5cgrbdsx561_tn.webp" alt=""><h3>Gorra Estilo Casual</h3><p>$160</p></div>
+        <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_752599-MLM72582738775_102023-O.webp" alt=""><h3>Gorra Deportiva Mujer</h3><p>$140</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJcyFm8TOt2l5VhP48EjosNh4S2_XRGWVYYA&s" alt=""><h3>Gorra con Logo</h3><p>$190</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJcyFm8TOt2l5VhP48EjosNh4S2_XRGWVYYA&s" alt=""><h3>Gorra Casual Mujer</h3><p>$150</p></div>
+        <div class="item"><img src="https://http2.mlstatic.com/D_NQ_NP_978289-MLM75149637502_032024-O-gorra-ajustable-deportiva-flexicap-beisbol-hombre-mujer.webp" alt=""><h3>Gorra Ajustable Mujer</h3><p>$130</p></div>
+    </div>
+  </div>
+
+  <div id="zapatosm" class="categoria hidden">
+    <h1 style="text-align:center;">Zapatos de mujer</h1>
+    <div class="grid">
+        <div class="item"><img src="https://jeanpierre.com.mx/cdn/shop/products/zapatilla-de-salon-en-ante-texturizado-650804.jpg?v=1746209990" alt=""><h3>Zapatos de Vestir Mujer</h3><p>$750</p></div>
+        <div class="item"><img src="https://ss870.suburbia.com.mx/sm/5009154665.jpg" alt=""><h3>Tenis Deportivos Mujer</h3><p>$650</p></div>
+        <div class="item"><img src="https://www.tiendamoramora.com/cdn/shop/files/84552-CE-12.jpg?v=1746479662" alt=""><h3>Zapatos Casual Mujer</h3><p>$550</p></div>
+        <div class="item"><img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/4005761.jpg?scale=500&qlty=75" alt=""><h3>Tenis Urbanos Mujer</h3><p>$600</p></div>
+        <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGhddejA0TjgOI5usLbSfSpc7R00IDnO8HDw&s" alt=""><h3>Botines de Mujer</h3><p>$850</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function mostrarSeccion(seccion) {
+    document.getElementById('comida').classList.add('hidden');
+    document.getElementById('papeleria').classList.add('hidden');
+    document.getElementById('ropah').classList.add('hidden');
+    document.getElementById('ropam').classList.add('hidden');
+    document.getElementById(seccion).classList.remove('hidden');
+  }
+
+  function showSection(categoria) {
+    const categorias = document.querySelectorAll('.categoria');
+    categorias.forEach(categoria => categoria.classList.add('hidden'));
+    document.getElementById(categoria).classList.remove('hidden');
+  }
+
+  function mostrarCategoria(categoria) {
+    const categorias = document.querySelectorAll('.categoria');
+    categorias.forEach(categoria => categoria.classList.add('hidden'));
+    document.getElementById(categoria).classList.remove('hidden');
+  }
+</script>
+</body>
+</html>

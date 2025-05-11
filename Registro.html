@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro IPN Delivery</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #fafafa; /* Fondo blanco */
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* Logo Bazac en la esquina superior izquierda */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 200px; /* Tamaño del logo ajustado a 200px */
+      height: 200px; /* Tamaño del logo ajustado a 200px */
+      background-image: url('https://i.imgur.com/FYTYoHj.png'); /* Imagen del logo */
+      background-size: cover; /* Ajustar el tamaño de la imagen */
+      background-position: center;
+      z-index: 1000; /* Asegurarse de que el logo esté encima de otros elementos */
+    }
+
+    /* Logo IPN en la esquina superior derecha */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 200px; /* Tamaño del logo ajustado a 200px */
+      height: 200px; /* Tamaño del logo ajustado a 200px */
+      background-image: url('https://images.seeklogo.com/logo-png/47/2/instituto-politecnico-nacional-logo-png_seeklogo-478563.png'); /* Imagen del logo IPN */
+      background-size: cover; /* Ajustar el tamaño de la imagen */
+      background-position: center;
+      z-index: 1000; /* Asegurarse de que el logo esté encima de otros elementos */
+    }
+
+    h2 {
+      color: #800000;
+      text-align: center;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #800000;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Registro IPN Delivery</h2>
+
+<form id="formRegistro" onsubmit="return validarEmail()">
+  <label for="nombre">Nombre completo:</label>
+  <input type="text" id="nombre" required>
+
+  <label for="tipo">Soy:</label>
+  <select id="tipo" required>
+    <option value="">Selecciona una opción</option>
+    <option value="estudiante">Estudiante</option>
+    <option value="profesor">Profesor</option>
+    <option value="trabajador">Trabajador</option>
+  </select>
+
+  <label for="correo">Correo institucional:</label>
+  <input type="email" id="correo" required>
+  <p class="error" id="errorCorreo"></p>
+
+  <button type="submit">Registrarse</button>
+</form>
+
+<script>
+  function validarEmail() {
+    const correo = document.getElementById("correo").value;
+    const error = document.getElementById("errorCorreo");
+
+    if (!correo.endsWith(".ipn.mx")) {
+      error.textContent = "Solo se permiten correos del IPN (.ipn.mx)";
+      return false;
+    }
+
+    error.textContent = "";
+    alert("Registro exitoso. ¡Bienvenido a IPN Delivery!");
+    window.location.href = "Catalogo.html";
+    return false;
+  }
+</script>
+
+</body>
+</html>
